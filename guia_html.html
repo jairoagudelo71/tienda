@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Etiquetas HTML</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        header p  { font-size: 1rem; color: #aac; }
+
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* Tarjeta de sección */
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #0f3460;
+            color: white;
+            padding: 14px 24px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-body { padding: 24px; }
+
+        /* Bloque de ejemplo */
+        .ejemplo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+            align-items: start;
+        }
+
+        .codigo {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .codigo .tag   { color: #89b4fa; }
+        .codigo .attr  { color: #a6e3a1; }
+        .codigo .val   { color: #fab387; }
+        .codigo .txt   { color: #cdd6f4; }
+        .codigo .com   { color: #6c7086; font-style: italic; }
+
+        .resultado {
+            background: #f8f9ff;
+            border: 2px dashed #c0c8e8;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .resultado-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .nota {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.88rem;
+            margin-top: 14px;
+            color: #555;
+        }
+
+        /* Tabla de referencia */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #0f3460;
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        td { padding: 10px 14px; border-bottom: 1px solid #eee; }
+        tr:hover td { background: #f0f4ff; }
+
+        /* Resultados de demostración */
+        .demo-titulos h1 { font-size: 2rem;   color: #1a1a2e; }
+        .demo-titulos h2 { font-size: 1.6rem; color: #2a3a6e; }
+        .demo-titulos h3 { font-size: 1.3rem; color: #3a4a8e; }
+        .demo-titulos h4 { font-size: 1.1rem; color: #4a5aae; }
+        .demo-titulos h5 { font-size: 0.95rem; color: #5a6ace; }
+        .demo-titulos h6 { font-size: 0.85rem; color: #6a7ade; }
+
+        .chip {
+            display: inline-block;
+            background: #e8eeff;
+            color: #0f3460;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: monospace;
+            margin: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 650px) {
+            .ejemplo { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📄 Guía de Etiquetas HTML</h1>
+    <p>Referencia práctica para construir páginas web desde cero</p>
+</header>
+
+<div class="container">
+
+    <!-- ===== ESTRUCTURA ===== -->
+    <div class="card">
+        <div class="card-header">🏗️ 1. Estructura base de una página HTML</div>
+        <div class="card-body">
+            <p>Todo archivo HTML debe comenzar con esta estructura mínima:</p>
+            <div class="ejemplo" style="grid-template-columns:1fr;">
+<div class="codigo"><span class="com">&lt;!-- Indica que es un documento HTML5 --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"es"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>           <span class="com">&lt;!-- Soporte tildes y ñ --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="txt">Mi primera página</span><span class="tag">&lt;/title&gt;</span>   <span class="com">&lt;!-- Título en la pestaña --&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="com">&lt;!-- Aquí va todo el contenido visible --&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></div>
+            </div>
+            <div class="nota">💡 <strong>head</strong> = información de la página (no visible). <strong>body</strong> = todo lo que el usuario ve.</div>
+        </div>
+    </div>
+
+    <!-- ===== TÍTULOS ===== -->
+    <div class="card">
+        <div class="card-header">🔤 2. Títulos y encabezados — &lt;h1&gt; al &lt;h6&gt;</div>
+        <div class="card-body">
+            <p>Hay 6 niveles de título. <strong>h1</strong> es el más grande e importante; <strong>h6</strong> el más pequeño.</p>
+            <div class="ejemplo">
+<div class="codigo"><span class="tag">&lt;h1&gt;</span><span class="txt">Título principal</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span><span class="txt">Sección importante</span><span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span><span class="txt">Sub-sección</span><span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span><span class="txt">Grupo de contenido</span><span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span><span class="txt">Detalle menor</span><span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span><span class="txt">Nota pequeña</span><span class="tag">&lt;/h6&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <div class="demo-titulos">
+                        <h1>Título principal</h1>
+                        <h2>Sección importante</h2>
+                        <h3>Sub-sección</h3>
+                        <h4>Grupo de contenido</h4>
+                        <h5>Detalle menor</h5>
+                        <h6>Nota pequeña</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="nota">💡 Usa solo UN <strong>&lt;h1&gt;</strong> por página. Es el título principal.</div>
+        </div>
+    </div>
+
+    <!-- ===== PÁRRAFOS Y TEXTO ===== -->
+    <div class="card">
+        <div class="card-header">📝 3. Párrafos y formato de texto</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="tag">&lt;p&gt;</span><span class="txt">Párrafo normal de texto.</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="txt">Texto con </span><span class="tag">&lt;strong&gt;</span><span class="txt">negrilla</span><span class="tag">&lt;/strong&gt;</span><span class="txt"> aquí.</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="txt">Texto en </span><span class="tag">&lt;em&gt;</span><span class="txt">cursiva</span><span class="tag">&lt;/em&gt;</span><span class="txt"> aquí.</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="txt">Texto </span><span class="tag">&lt;u&gt;</span><span class="txt">subrayado</span><span class="tag">&lt;/u&gt;</span><span class="txt"> aquí.</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="txt">Texto </span><span class="tag">&lt;del&gt;</span><span class="txt">tachado</span><span class="tag">&lt;/del&gt;</span><span class="txt"> aquí.</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="txt">2</span><span class="tag">&lt;sup&gt;</span><span class="txt">3</span><span class="tag">&lt;/sup&gt;</span><span class="txt"> = 8  (superíndice)</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span><span class="txt">H</span><span class="tag">&lt;sub&gt;</span><span class="txt">2</span><span class="tag">&lt;/sub&gt;</span><span class="txt">O  (subíndice)</span><span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;br&gt;</span>  <span class="com">&lt;!-- Salto de línea --&gt;</span>
+<span class="tag">&lt;hr&gt;</span>  <span class="com">&lt;!-- Línea horizontal --&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <p>Párrafo normal de texto.</p><br>
+                    <p>Texto con <strong>negrilla</strong> aquí.</p><br>
+                    <p>Texto en <em>cursiva</em> aquí.</p><br>
+                    <p>Texto <u>subrayado</u> aquí.</p><br>
+                    <p>Texto <del>tachado</del> aquí.</p><br>
+                    <p>2<sup>3</sup> = 8 &nbsp;(superíndice)</p><br>
+                    <p>H<sub>2</sub>O &nbsp;(subíndice)</p><br>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ENLACES ===== -->
+    <div class="card">
+        <div class="card-header">🔗 4. Enlaces — &lt;a&gt;</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="com">&lt;!-- Enlace externo (abre en nueva pestaña) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://google.com"</span>
+   <span class="attr">target</span>=<span class="val">"_blank"</span><span class="tag">&gt;</span>
+  <span class="txt">Ir a Google</span>
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="com">&lt;!-- Enlace a otra página del sitio --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"contacto.html"</span><span class="tag">&gt;</span>
+  <span class="txt">Contacto</span>
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="com">&lt;!-- Enlace a sección de la misma página --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#productos"</span><span class="tag">&gt;</span>
+  <span class="txt">Ver productos</span>
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="com">&lt;!-- Enlace de correo --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"mailto:hola@correo.com"</span><span class="tag">&gt;</span>
+  <span class="txt">Envíanos un correo</span>
+<span class="tag">&lt;/a&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <a href="https://google.com" target="_blank">Ir a Google</a><br><br>
+                    <a href="contacto.html">Contacto</a><br><br>
+                    <a href="#productos">Ver productos</a><br><br>
+                    <a href="mailto:hola@correo.com">Envíanos un correo</a>
+                </div>
+            </div>
+            <div class="nota">💡 <code>target="_blank"</code> abre el enlace en una pestaña nueva. Sin eso, abre en la misma.</div>
+        </div>
+    </div>
+
+    <!-- ===== IMÁGENES ===== -->
+    <div class="card">
+        <div class="card-header">🖼️ 5. Imágenes — &lt;img&gt;</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="com">&lt;!-- Imagen desde internet --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="val">"https://picsum.photos/200"</span>
+  <span class="attr">alt</span>=<span class="val">"Descripción de la imagen"</span>
+  <span class="attr">width</span>=<span class="val">"200"</span>
+<span class="tag">&gt;</span>
+
+<span class="com">&lt;!-- Imagen desde una carpeta local --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="val">"imagenes/foto.jpg"</span>
+  <span class="attr">alt</span>=<span class="val">"Mi foto"</span>
+<span class="tag">&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <img src="https://picsum.photos/200/120" alt="Imagen de ejemplo" style="border-radius:8px;">
+                </div>
+            </div>
+            <div class="nota">💡 El atributo <strong>alt</strong> es obligatorio: describe la imagen para personas con discapacidad visual y para Google.</div>
+        </div>
+    </div>
+
+    <!-- ===== LISTAS ===== -->
+    <div class="card">
+        <div class="card-header">📋 6. Listas</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="com">&lt;!-- Lista desordenada (puntos) --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Manzana</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Banano</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Naranja</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="com">&lt;!-- Lista ordenada (números) --&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Paso uno</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Paso dos</span><span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span><span class="txt">Paso tres</span><span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <strong>Sin orden:</strong>
+                    <ul><li>Manzana</li><li>Banano</li><li>Naranja</li></ul>
+                    <br>
+                    <strong>Ordenada:</strong>
+                    <ol><li>Paso uno</li><li>Paso dos</li><li>Paso tres</li></ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TABLAS ===== -->
+    <div class="card">
+        <div class="card-header">📊 7. Tablas — &lt;table&gt;</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="tag">&lt;table</span> <span class="attr">border</span>=<span class="val">"1"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- Encabezado --&gt;</span>
+  <span class="tag">&lt;thead&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;th&gt;</span><span class="txt">Nombre</span><span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span><span class="txt">Edad</span><span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span><span class="txt">Ciudad</span><span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/thead&gt;</span>
+
+  <span class="com">&lt;!-- Filas de datos --&gt;</span>
+  <span class="tag">&lt;tbody&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span><span class="txt">Ana</span><span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span><span class="txt">25</span><span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span><span class="txt">Bogotá</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span><span class="txt">Luis</span><span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span><span class="txt">30</span><span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span><span class="txt">Medellín</span><span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tbody&gt;</span>
+
+<span class="tag">&lt;/table&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <table border="1" style="border-collapse:collapse; width:100%;">
+                        <thead>
+                            <tr style="background:#0f3460; color:white;">
+                                <th style="padding:8px;">Nombre</th>
+                                <th style="padding:8px;">Edad</th>
+                                <th style="padding:8px;">Ciudad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding:8px;">Ana</td><td style="padding:8px;">25</td><td style="padding:8px;">Bogotá</td></tr>
+                            <tr><td style="padding:8px;">Luis</td><td style="padding:8px;">30</td><td style="padding:8px;">Medellín</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FORMULARIOS ===== -->
+    <div class="card">
+        <div class="card-header">📬 8. Formularios — &lt;form&gt;</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="tag">&lt;form&gt;</span>
+
+  <span class="com">&lt;!-- Campo de texto --&gt;</span>
+  <span class="tag">&lt;label&gt;</span><span class="txt">Nombre:</span><span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span>
+         <span class="attr">placeholder</span>=<span class="val">"Tu nombre"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- Campo de correo --&gt;</span>
+  <span class="tag">&lt;label&gt;</span><span class="txt">Email:</span><span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span>
+         <span class="attr">placeholder</span>=<span class="val">"correo@ejemplo.com"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- Contraseña --&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"password"</span>
+         <span class="attr">placeholder</span>=<span class="val">"Contraseña"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- Área de texto grande --&gt;</span>
+  <span class="tag">&lt;textarea</span> <span class="attr">rows</span>=<span class="val">"3"</span>
+             <span class="attr">placeholder</span>=<span class="val">"Mensaje..."</span><span class="tag">&gt;&lt;/textarea&gt;</span>
+
+  <span class="com">&lt;!-- Lista desplegable --&gt;</span>
+  <span class="tag">&lt;select&gt;</span>
+    <span class="tag">&lt;option&gt;</span><span class="txt">Opción 1</span><span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option&gt;</span><span class="txt">Opción 2</span><span class="tag">&lt;/option&gt;</span>
+  <span class="tag">&lt;/select&gt;</span>
+
+  <span class="com">&lt;!-- Checkbox y Radio --&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"checkbox"</span><span class="tag">&gt;</span> <span class="txt">Acepto términos</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"radio"</span>
+         <span class="attr">name</span>=<span class="val">"sexo"</span><span class="tag">&gt;</span> <span class="txt">Masculino</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"radio"</span>
+         <span class="attr">name</span>=<span class="val">"sexo"</span><span class="tag">&gt;</span> <span class="txt">Femenino</span>
+
+  <span class="com">&lt;!-- Botón --&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="val">"submit"</span><span class="tag">&gt;</span>
+    <span class="txt">Enviar</span>
+  <span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;/form&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <form style="display:flex;flex-direction:column;gap:8px;" onsubmit="return false">
+                        <label>Nombre:</label>
+                        <input type="text" placeholder="Tu nombre" style="padding:7px;border:1px solid #ccc;border-radius:5px;">
+                        <label>Email:</label>
+                        <input type="email" placeholder="correo@ejemplo.com" style="padding:7px;border:1px solid #ccc;border-radius:5px;">
+                        <input type="password" placeholder="Contraseña" style="padding:7px;border:1px solid #ccc;border-radius:5px;">
+                        <textarea rows="3" placeholder="Mensaje..." style="padding:7px;border:1px solid #ccc;border-radius:5px;"></textarea>
+                        <select style="padding:7px;border:1px solid #ccc;border-radius:5px;">
+                            <option>Opción 1</option><option>Opción 2</option>
+                        </select>
+                        <label><input type="checkbox"> Acepto términos</label>
+                        <div>
+                            <input type="radio" name="sexo"> Masculino &nbsp;
+                            <input type="radio" name="sexo"> Femenino
+                        </div>
+                        <button type="submit" style="background:#0f3460;color:white;padding:9px 20px;border:none;border-radius:6px;cursor:pointer;width:fit-content;">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== DIV Y SPAN ===== -->
+    <div class="card">
+        <div class="card-header">📦 9. Contenedores — &lt;div&gt; y &lt;span&gt;</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="com">&lt;!-- div ocupa todo el ancho (bloque) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style</span>=<span class="val">"background:lightblue; padding:10px;"</span><span class="tag">&gt;</span>
+  <span class="txt">Soy una caja div</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">style</span>=<span class="val">"background:lightyellow; padding:10px;"</span><span class="tag">&gt;</span>
+  <span class="txt">Otra caja div</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="com">&lt;!-- span va en línea (no rompe el texto) --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+  <span class="txt">Texto normal y </span>
+  <span class="tag">&lt;span</span> <span class="attr">style</span>=<span class="val">"color:red;"</span><span class="tag">&gt;</span>
+    <span class="txt">texto en rojo</span>
+  <span class="tag">&lt;/span&gt;</span>
+  <span class="txt"> en la misma línea.</span>
+<span class="tag">&lt;/p&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Resultado</div>
+                    <div style="background:lightblue; padding:10px; margin-bottom:5px; border-radius:4px;">Soy una caja div</div>
+                    <div style="background:lightyellow; padding:10px; border-radius:4px;">Otra caja div</div>
+                    <br>
+                    <p>Texto normal y <span style="color:red;">texto en rojo</span> en la misma línea.</p>
+                </div>
+            </div>
+            <div class="nota">💡 <strong>div</strong> = caja grande para agrupar secciones. <strong>span</strong> = para aplicar estilo a una palabra dentro de un texto.</div>
+        </div>
+    </div>
+
+    <!-- ===== SEMÁNTICA ===== -->
+    <div class="card">
+        <div class="card-header">🧩 10. Etiquetas semánticas (HTML5)</div>
+        <div class="card-body">
+            <p>Estas etiquetas funcionan como <code>&lt;div&gt;</code> pero con un <strong>significado</strong> para el navegador y Google:</p>
+            <br>
+            <table>
+                <thead>
+                    <tr><th>Etiqueta</th><th>Para qué se usa</th><th>Ejemplo</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="chip">&lt;header&gt;</span></td><td>Encabezado de la página o sección</td><td>Logo + menú de navegación</td></tr>
+                    <tr><td><span class="chip">&lt;nav&gt;</span></td><td>Barra de navegación con enlaces</td><td>Menú principal</td></tr>
+                    <tr><td><span class="chip">&lt;main&gt;</span></td><td>Contenido principal de la página</td><td>El cuerpo central</td></tr>
+                    <tr><td><span class="chip">&lt;section&gt;</span></td><td>Sección temática de contenido</td><td>Sección "Productos", "Nosotros"</td></tr>
+                    <tr><td><span class="chip">&lt;article&gt;</span></td><td>Contenido independiente</td><td>Una noticia, un blog post</td></tr>
+                    <tr><td><span class="chip">&lt;aside&gt;</span></td><td>Contenido secundario lateral</td><td>Barra lateral, anuncios</td></tr>
+                    <tr><td><span class="chip">&lt;footer&gt;</span></td><td>Pie de página</td><td>Derechos, enlaces legales</td></tr>
+                </tbody>
+            </table>
+            <br>
+<div class="codigo"><span class="tag">&lt;header&gt;</span>  <span class="txt">Logo y menú</span>  <span class="tag">&lt;/header&gt;</span>
+<span class="tag">&lt;nav&gt;</span>     <span class="txt">Enlace1 | Enlace2</span>  <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;section&gt;</span>  <span class="txt">Productos</span>  <span class="tag">&lt;/section&gt;</span>
+  <span class="tag">&lt;section&gt;</span>  <span class="txt">Servicios</span>  <span class="tag">&lt;/section&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;footer&gt;</span>  <span class="txt">© 2026 Mi Empresa</span>  <span class="tag">&lt;/footer&gt;</span></div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO Y AUDIO ===== -->
+    <div class="card">
+        <div class="card-header">🎬 11. Video y Audio</div>
+        <div class="card-body">
+            <div class="ejemplo">
+<div class="codigo"><span class="com">&lt;!-- Video --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">width</span>=<span class="val">"320"</span>
+       <span class="attr">controls</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"video.mp4"</span>
+          <span class="attr">type</span>=<span class="val">"video/mp4"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="com">&lt;!-- Audio --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"cancion.mp3"</span>
+          <span class="attr">type</span>=<span class="val">"audio/mpeg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/audio&gt;</span>
+
+<span class="com">&lt;!-- Video de YouTube --&gt;</span>
+<span class="tag">&lt;iframe</span>
+  <span class="attr">src</span>=<span class="val">"https://www.youtube.com/embed/ID"</span>
+  <span class="attr">width</span>=<span class="val">"560"</span> <span class="attr">height</span>=<span class="val">"315"</span>
+  <span class="attr">allowfullscreen</span><span class="tag">&gt;
+&lt;/iframe&gt;</span></div>
+                <div class="resultado">
+                    <div class="resultado-label">Referencia visual</div>
+                    <p style="color:#555;">▶ El atributo <strong>controls</strong> muestra los botones de play, pausa y volumen.</p>
+                    <br>
+                    <p style="color:#555;">📺 <strong>iframe</strong> también sirve para incrustar Google Maps.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== RESUMEN ===== -->
+    <div class="card">
+        <div class="card-header">📌 12. Resumen rápido — todas las etiquetas</div>
+        <div class="card-body">
+            <table>
+                <thead>
+                    <tr><th>Etiqueta</th><th>Para qué sirve</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="chip">&lt;h1&gt;…&lt;h6&gt;</span></td><td>Títulos (de mayor a menor importancia)</td></tr>
+                    <tr><td><span class="chip">&lt;p&gt;</span></td><td>Párrafo de texto</td></tr>
+                    <tr><td><span class="chip">&lt;strong&gt;</span></td><td>Texto en <strong>negrilla</strong></td></tr>
+                    <tr><td><span class="chip">&lt;em&gt;</span></td><td>Texto en <em>cursiva</em></td></tr>
+                    <tr><td><span class="chip">&lt;u&gt;</span></td><td>Texto <u>subrayado</u></td></tr>
+                    <tr><td><span class="chip">&lt;del&gt;</span></td><td>Texto <del>tachado</del></td></tr>
+                    <tr><td><span class="chip">&lt;br&gt;</span></td><td>Salto de línea</td></tr>
+                    <tr><td><span class="chip">&lt;hr&gt;</span></td><td>Línea horizontal divisoria</td></tr>
+                    <tr><td><span class="chip">&lt;a&gt;</span></td><td>Enlace / hipervínculo</td></tr>
+                    <tr><td><span class="chip">&lt;img&gt;</span></td><td>Imagen</td></tr>
+                    <tr><td><span class="chip">&lt;ul&gt; / &lt;ol&gt;</span></td><td>Lista sin orden / con orden</td></tr>
+                    <tr><td><span class="chip">&lt;li&gt;</span></td><td>Elemento de una lista</td></tr>
+                    <tr><td><span class="chip">&lt;table&gt;</span></td><td>Tabla de datos</td></tr>
+                    <tr><td><span class="chip">&lt;form&gt;</span></td><td>Formulario</td></tr>
+                    <tr><td><span class="chip">&lt;input&gt;</span></td><td>Campo de entrada (texto, email, etc.)</td></tr>
+                    <tr><td><span class="chip">&lt;button&gt;</span></td><td>Botón</td></tr>
+                    <tr><td><span class="chip">&lt;div&gt;</span></td><td>Caja / contenedor de bloque</td></tr>
+                    <tr><td><span class="chip">&lt;span&gt;</span></td><td>Contenedor en línea</td></tr>
+                    <tr><td><span class="chip">&lt;header&gt;</span></td><td>Cabecera de la página</td></tr>
+                    <tr><td><span class="chip">&lt;nav&gt;</span></td><td>Navegación</td></tr>
+                    <tr><td><span class="chip">&lt;main&gt;</span></td><td>Contenido principal</td></tr>
+                    <tr><td><span class="chip">&lt;section&gt;</span></td><td>Sección de contenido</td></tr>
+                    <tr><td><span class="chip">&lt;footer&gt;</span></td><td>Pie de página</td></tr>
+                    <tr><td><span class="chip">&lt;video&gt;</span></td><td>Video</td></tr>
+                    <tr><td><span class="chip">&lt;audio&gt;</span></td><td>Audio</td></tr>
+                    <tr><td><span class="chip">&lt;iframe&gt;</span></td><td>Incrustar otra página (YouTube, Maps)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Guía HTML para estudiantes · Ábrelo en cualquier navegador · Edítalo con el Bloc de notas o VSCode</p>
+</footer>
+
+</body>
+</html>
